@@ -5,6 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="SAP SD Quiz">
+<meta name="theme-color" content="#3B4BFF">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
 <title>SAP SD Quiz</title>
 <style>
 :root{--bg:#EEF1F8;--sf:#fff;--ink:#14182B;--mute:#5B6280;--ac:#3B4BFF;--acs:#E3E6FF;--ok:#12A150;--oks:#D9F5E5;--no:#E5484D;--nos:#FDE3E4;--ln:#D6DAEA;
@@ -64,7 +68,7 @@ function help(){
   '<li><strong>Prüfung:</strong> 20 zufällige Fragen. Dein Bestwert wird bei Runden mit mindestens 20 beantworteten Fragen aktualisiert.</li>'+
   '<li><strong>Kategorie:</strong> Nur Fragen aus einer Kategorie.</li>'+
   '<li><strong>Fehlerliste:</strong> Fragen, die du zuletzt falsch hattest. Nach dem Ergebnis kannst du die falschen Fragen auch direkt wiederholen.</li></ul>'+
-  '<h3>Dein Stand</h3><p>Wissensstand, Fehlerliste und Bestwert werden nur auf deinem Gerät im Browser gespeichert. Niemand sonst sieht sie. Nutze immer denselben Weg, also entweder das App-Symbol oder den Browser. Wenn du die Website-Daten löschst, ist dein Stand weg.</p>'+
+  '<h3>Dein Stand</h3><p>Wissensstand, Fehlerliste und Bestwert werden nur auf deinem Gerät im Browser gespeichert. Niemand sonst sieht sie. Nutze immer denselben Weg, also entweder das App-Symbol oder den Browser. Ganz unten auf der Startseite kannst du ihn mit „Lernstand zurücksetzen“ selbst löschen. Wenn du die Website-Daten im Browser löschst, ist er ebenfalls weg.</p>'+
   '<h3>Als App aufs Handy legen</h3><ul>'+
   '<li><strong>Android (Chrome):</strong> Menü oben rechts (drei Punkte), dann „Zum Startbildschirm hinzufügen“.</li>'+
   '<li><strong>iPhone (Safari):</strong> Teilen-Symbol, dann „Zum Home-Bildschirm“.</li>'+
@@ -89,7 +93,14 @@ function home(){
   '<p class="sub" style="margin:26px 0 10px">Nach Kategorie</p>';
   cats.forEach(function(c){var n=Q.filter(function(q){return q[0]===c}).length;h+='<button class="menu" data-c="'+c+'"><span>Kategorie '+c+'</span><small>'+n+' Fragen</small></button>'});
   h+='<button class="menu" id="mis"'+(missed.length?'':' disabled style="opacity:.5"')+'><span>Fehlerliste üben</span><small>'+missed.length+' Fragen</small></button>';
+  h+='<button class="ghost" id="rs" style="width:100%;margin-top:18px">Lernstand zurücksetzen</button>';
   app.innerHTML=h;
+  document.getElementById("rs").onclick=function(){
+    var b=this;
+    if(b.dataset.s!=="1"){b.dataset.s="1";b.textContent="Wirklich alles löschen? Nochmal tippen";b.style.background="var(--nos)";
+      setTimeout(function(){if(document.body.contains(b)){b.dataset.s="";b.textContent="Lernstand zurücksetzen";b.style.background=""}},4000)}
+    else{know={};missed=[];best=null;save("sd-know",{});save("sd-missed",[]);try{localStorage.removeItem("sd-best")}catch(e){}home()}
+  };
   document.getElementById("help").onclick=help;
   document.getElementById("all").onclick=function(){start(Q)};
   document.getElementById("exam").onclick=function(){start(shuffle(Q).slice(0,20))};
