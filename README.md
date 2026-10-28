@@ -10,7 +10,7 @@ Tipp auf den Link, am besten gleich im Browser (Chrome oder Safari). Wenn der Li
 Als App aufs Handy legen (optional):
 - Android (Chrome): Menü oben rechts (drei Punkte), dann „Zum Startbildschirm hinzufügen“.
 - iPhone (Safari): unten auf das Teilen-Symbol tippen, dann „Zum Home-Bildschirm“.
-- iPhone (Chrome): Teilen-Symbol neben der Adresszeile, dann „Zum Home-Bildschirm“.
+- iPhone (Chrome): Teilen-Symbol in der Adresszeile, dann „Zum Home-Bildschirm“.
 Die Menünamen können je nach Version etwas anders heißen.
 
 So funktioniert es:
@@ -28,4 +28,3 @@ Wichtig:
 - Dein Stand wird nur auf deinem Handy gespeichert. Niemand sieht deine Ergebnisse, und du siehst auch keine von anderen.
 - Nutze immer denselben Weg, also entweder das App-Symbol oder den Browser. Sonst kann es sein, dass dein Stand nicht angezeigt wird.
 - Wenn du die Website-Daten im Browser löschst, ist dein Stand weg.
-- Wenn du in einer Frage einen Fehler oder etwas Unklares findest, schreib mir kurz.
