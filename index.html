@@ -78,10 +78,10 @@ function start(list){deck=shuffle(list);i=0;score=0;wrong=[];show()}
 function show(){
   var q=deck[i],opts=shuffle(q[2]),nr=opts.filter(function(o){return o[1]}).length,sel={},done=false;
   app.innerHTML='<div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="'+deck.length+'" aria-valuenow="'+i+'"><span style="width:'+(i/deck.length*100)+'%"></span></div>'+
-  '<p class="sub">Frage '+(i+1)+' von '+deck.length+' – Kategorie '+q[0]+'</p><h2>'+esc(q[1])+'</h2>'+
+  '<div class="crow" style="align-items:center;margin-bottom:18px"><span class="sub" style="margin:0">Frage '+(i+1)+' von '+deck.length+' – Kategorie '+q[0]+'</span><button class="ghost" id="end" style="padding:8px 14px">Beenden</button></div><h2>'+esc(q[1])+'</h2>'+
   '<p class="sub" style="margin-top:-12px">Wähle '+nr+' richtige Antwort'+(nr>1?'en':'')+'.</p>'+
   '<div>'+opts.map(function(o,k){return '<button class="opt" data-k="'+k+'" aria-pressed="false"><span class="box"></span><span class="tx">'+esc(o[0])+'</span></button>'}).join("")+'</div><div id="fb" aria-live="polite"><button class="primary" id="chk" disabled style="opacity:.5">Antwort prüfen</button></div>';
-  var btns=app.querySelectorAll(".opt"),chk=document.getElementById("chk");
+  var btns=app.querySelectorAll(".opt"),chk=document.getElementById("chk");document.getElementById("end").onclick=function(){var a=done?i+1:i;a>0?result(a):home()};
   btns.forEach(function(b){b.onclick=function(){if(done)return;var k=b.dataset.k;sel[k]=!sel[k];b.classList.toggle("sel",sel[k]);b.setAttribute("aria-pressed",sel[k]);b.firstChild.textContent=sel[k]?"\u2713":"";var any=Object.keys(sel).some(function(x){return sel[x]});chk.disabled=!any;chk.style.opacity=any?1:.5}});
   chk.onclick=function(){
     done=true;var good=true;
@@ -92,15 +92,15 @@ function show(){
     var id=idx(q);
     if(good){score++;missed=missed.filter(function(x){return x!==id})}else{wrong.push(q);if(missed.indexOf(id)<0)missed.push(id)}
     save("sd-missed",missed);know[id]=good?1:0;save("sd-know",know);
-    document.getElementById("fb").innerHTML='<p class="exp"><strong>'+(good?"Richtig.":"Nicht ganz.")+'</strong> '+(good?"Alle richtigen Antworten gewählt, keine falsche.":"Für einen Punkt müssen genau die richtigen Antworten gewählt sein.")+'</p><button class="primary" id="nx">'+(i+1<deck.length?"Weiter":"Ergebnis anzeigen")+'</button>';
-    var nx=document.getElementById("nx");nx.onclick=function(){i++;i<deck.length?show():result()};nx.focus();
+    document.getElementById("fb").innerHTML='<p class="exp"><strong>'+(good?"Richtig.":"Nicht ganz.")+'</strong> '+(good?"Alle richtigen Antworten gewählt, keine falsche.":"Für einen Punkt müssen genau die richtigen Antworten gewählt sein.")+'</p><button class="primary" id="nx">'+(i+1<deck.length?"Weiter":"Ergebnis anzeigen")+'</button>'+(i+1<deck.length?'<button class="ghost" id="stop" style="width:100%;margin-top:10px">Jetzt beenden ('+(i+1)+' beantwortet)</button>':'');
+    var nx=document.getElementById("nx");nx.onclick=function(){i++;i<deck.length?show():result()};nx.focus();var sp=document.getElementById("stop");if(sp)sp.onclick=function(){result(i+1)};
   };
 }
-function result(){
-  var pct=Math.round(score/deck.length*100);
-  if(deck.length>=20&&(best===null||pct>best)){best=pct;save("sd-best",pct)}
+function result(n){n=n||deck.length;
+  var pct=Math.round(score/n*100);
+  if(n>=20&&(best===null||pct>best)){best=pct;save("sd-best",pct)}
   var msg=pct>=70?"Bestanden-Niveau erreicht.":pct>=50?"Auf dem Weg – wiederhole die Fehler.":"Noch viel Luft nach oben. Übe die Fehlerliste.";
-  app.innerHTML='<h1>Ergebnis</h1><div class="score">'+score+' / '+deck.length+'</div><p class="sub">'+pct+' % richtig – '+msg+'</p>'+
+  app.innerHTML='<h1>Ergebnis</h1><div class="score">'+score+' / '+n+'</div><p class="sub">'+pct+' % richtig – '+msg+'</p>'+
   (wrong.length?'<button class="primary" id="rep">Falsche Fragen wiederholen ('+wrong.length+')</button>':'')+
   '<button class="primary" id="again" style="background:var(--acs);color:var(--ink)">Neue Runde</button><button class="ghost" id="hm" style="width:100%;margin-top:12px">Zum Start</button>';
   if(wrong.length)document.getElementById("rep").onclick=function(){start(wrong)};
