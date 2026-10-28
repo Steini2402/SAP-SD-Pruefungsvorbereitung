@@ -1,34 +1,67 @@
-SAP SD Quiz zum Üben 
+<p align="center">
+  <img src="icon-192.png" alt="SAP SD Quiz" width="88">
+</p>
 
-Ich habe aus unserem Fragenkatalog ein Quiz gebaut, das du direkt auf dem Handy nutzen kannst. Es sind aktuell 60 Fragen mit Mehrfachauswahl, die weiter ergänzt werden.
+<h1 align="center">SAP SD Quiz</h1>
 
-Link: https://steini2402.github.io/SAP-SD-Pr-fungsvorbereitung/
+<p align="center">
+  Übe die Fragen aus dem Zertifizierungskatalog auf dem Handy. Lies kurz die Anleitung, dann geht es los.
+</p>
 
-Öffnen:
-Tipp auf den Link, am besten gleich im Browser (Chrome oder Safari). Wenn der Link in WhatsApp in einem eingebauten Fenster aufgeht, öffne ihn über „Im Browser öffnen“.
+<p align="center">
+  <a href="https://steini2402.github.io/sd-quiz/quiz.html"><strong>Quiz starten</strong></a>
+</p>
 
-Als App aufs Handy legen (optional):
-- Android (Chrome): Menü oben rechts (drei Punkte), dann „Zum Startbildschirm hinzufügen“.
-- iPhone (Safari): unten auf das Teilen-Symbol tippen, dann „Zum Home-Bildschirm“.
-- iPhone (Chrome): Teilen-Symbol in der Adresszeile, dann „Zum Home-Bildschirm“.
-Die Menünamen können je nach Version etwas anders heißen.
+<h2>So läuft eine Runde</h2>
+<p>
+  Zu jeder Frage gibt es mehrere Antworten. Oben steht, wie viele davon richtig sind. Tippe alle Antworten an, die du für richtig hältst, und dann auf „Antwort prüfen“. Danach siehst du die Auflösung:
+</p>
+<ul>
+  <li>🟩 <strong>Grün:</strong> richtig und von dir gewählt</li>
+  <li>🟥 <strong>Rot:</strong> falsch, aber von dir gewählt</li>
+  <li>🟩 <strong>Grün gestrichelt:</strong> richtig, aber nicht gewählt</li>
+  <li>⬜ <strong>Unmarkiert:</strong> falsch und nicht gewählt</li>
+</ul>
 
-So funktioniert es:
-- Du wählst alle Antworten aus, die du für richtig hältst, und tippst dann auf „Antwort prüfen“. Vorher steht dabei, wie viele richtige Antworten es gibt.
-- Einen Punkt gibt es nur, wenn genau die richtigen Antworten gewählt sind, also alle richtigen und keine falsche. Das ist so streng wie in der Prüfung.
-- Nach dem Prüfen siehst du, was richtig und was falsch war.
-- Mit „Beenden“ kannst du jederzeit aufhören und bekommst dein Ergebnis für die Fragen, die du beantwortet hast.
+<h2>Punkte</h2>
+<p>
+  Einen Punkt gibt es nur, wenn genau die richtigen Antworten gewählt sind: alle richtigen und keine falsche. Das ist bewusst streng, damit du den Stoff wirklich sicher kannst.
+</p>
 
-Auf der Startseite:
-- Hilfe, hier wird alles genau erklärt
-- Wissensstand: Er zeigt in Prozent, wie viele Fragen du zuletzt richtig hattest, insgesamt und pro Kategorie.
-- Alle Fragen mischen, Prüfung mit 20 Zufallsfragen oder nach Kategorie üben
-- Fehlerliste: Dort stehen die Fragen, die du zuletzt falsch hattest. Du kannst sie gezielt wiederholen.
-- Lernstand zurücksetzen: hier kannst du komplett neu starten
+<h2>Beenden</h2>
+<p>
+  Du kannst jederzeit aufhören, mit „Beenden“ oben rechts oder „Jetzt beenden“ nach dem Prüfen. Das Ergebnis zählt nur die Fragen, die du beantwortet hast.
+</p>
 
-Wichtig:
-- Dein Stand wird nur auf deinem Handy gespeichert. Niemand sieht deine Ergebnisse, und du siehst auch keine von anderen.
-- Nutze immer denselben Weg, also entweder das App-Symbol oder den Browser. Sonst kann es sein, dass dein Stand nicht angezeigt wird.
-- Wenn du die Website-Daten im Browser löschst, ist dein Stand weg.
+<h2>Auf der Startseite des Quiz</h2>
+<ul>
+  <li><strong>Wissensstand:</strong> In Prozent, wie viele Fragen du zuletzt richtig beantwortet hast, insgesamt und pro Kategorie. Fragen, die du noch nie beantwortet hast, zählen als nicht gewusst.</li>
+  <li><strong>Alle Fragen mischen:</strong> Alle Fragen in zufälliger Reihenfolge.</li>
+  <li><strong>Prüfung:</strong> 20 zufällige Fragen.</li>
+  <li><strong>Kategorie:</strong> Nur Fragen aus einer Kategorie üben.</li>
+  <li><strong>Fehlerliste:</strong> Die Fragen, die du zuletzt falsch hattest. Nach dem Ergebnis kannst du falsche Fragen auch direkt wiederholen.</li>
+  <li><strong>Lernstand zurücksetzen:</strong> Ganz unten, falls du bei null anfangen willst.</li>
+</ul>
 
-- Copyright by Stefan Steinweg
+<h2>Als App aufs Handy legen</h2>
+<p>
+  Das ist optional. Öffne zuerst das Quiz mit „Quiz starten“ und lege es von dort aus ab.
+</p>
+<ul>
+  <li><strong>Android (Chrome):</strong> Menü oben rechts (drei Punkte), dann „Zum Startbildschirm hinzufügen“ oder „App installieren“.</li>
+  <li><strong>iPhone (Safari):</strong> Teilen-Symbol, dann „Zum Home-Bildschirm“.</li>
+  <li><strong>iPhone (Chrome):</strong> Teilen-Symbol neben der Adresszeile, dann „Zum Home-Bildschirm“.</li>
+</ul>
+<p>Die Menünamen können je nach Version etwas anders heißen.</p>
+
+<h2>Dein Lernstand</h2>
+<p>
+  Wissensstand, Fehlerliste und Bestwert werden nur auf deinem Gerät im Browser gespeichert. Niemand sonst sieht sie. Nutze immer denselben Weg, also entweder das App-Symbol oder den Browser. Wenn du die Website-Daten löschst, ist dein Stand weg.
+</p>
+
+<h2>Fehler gefunden?</h2>
+<p>
+  Wenn eine Frage falsch oder unklar wirkt, sag dem Ersteller des Quiz Bescheid.
+</p>
+
+<p align="center">Copyright © 2026 by Stefan Steinweg</p>
