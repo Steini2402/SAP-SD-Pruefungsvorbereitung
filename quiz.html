@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="SAP SD Quiz">
+<meta name="author" content="Stefan Steinweg">
 <meta name="theme-color" content="#3B4BFF">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -74,7 +75,7 @@ function help(){
   '<li><strong>iPhone (Safari):</strong> Teilen-Symbol, dann „Zum Home-Bildschirm“.</li>'+
   '<li><strong>iPhone (Chrome):</strong> Teilen-Symbol neben der Adresszeile, dann „Zum Home-Bildschirm“.</li></ul>'+
   '<h3>Fehler gefunden?</h3><p>Wenn eine Frage falsch oder unklar wirkt, sag dem Ersteller des Quiz Bescheid.</p></div>'+
-  '<button class="primary" id="back2">Zur Startseite</button>';
+  '<button class="primary" id="back2">Zur Startseite</button><p class="hint" style="text-align:center;margin-top:24px">Copyright © 2026 by Stefan Steinweg</p>';
   var bk=function(){home();window.scrollTo(0,0)};
   document.getElementById("back").onclick=bk;document.getElementById("back2").onclick=bk;window.scrollTo(0,0);
 }
@@ -94,6 +95,7 @@ function home(){
   cats.forEach(function(c){var n=Q.filter(function(q){return q[0]===c}).length;h+='<button class="menu" data-c="'+c+'"><span>Kategorie '+c+'</span><small>'+n+' Fragen</small></button>'});
   h+='<button class="menu" id="mis"'+(missed.length?'':' disabled style="opacity:.5"')+'><span>Fehlerliste üben</span><small>'+missed.length+' Fragen</small></button>';
   h+='<button class="ghost" id="rs" style="width:100%;margin-top:18px">Lernstand zurücksetzen</button>';
+  h+='<p class="hint" style="text-align:center;margin-top:24px">Copyright © 2026 by Stefan Steinweg</p>';
   app.innerHTML=h;
   document.getElementById("rs").onclick=function(){
     var b=this;
