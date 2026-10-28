@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://steini2402.github.io/sd-quiz/quiz.html"><strong>Quiz starten</strong></a>
+  <a href="https://steini2402.github.io/SAP-SD-Pr-fungsvorbereitung/quiz.html"><strong>Quiz starten</strong></a>
 </p>
 
 <h2>So läuft eine Runde</h2>
