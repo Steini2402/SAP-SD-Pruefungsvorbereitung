@@ -24,6 +24,7 @@ Auf der Startseite:
 - Wissensstand: Er zeigt in Prozent, wie viele Fragen du zuletzt richtig hattest, insgesamt und pro Kategorie.
 - Alle Fragen mischen, Prüfung mit 20 Zufallsfragen oder nach Kategorie üben
 - Fehlerliste: Dort stehen die Fragen, die du zuletzt falsch hattest. Du kannst sie gezielt wiederholen.
+- Lernstand zurücksetzen: hier kannst du komplett neu starten
 
 Wichtig:
 - Dein Stand wird nur auf deinem Handy gespeichert. Niemand sieht deine Ergebnisse, und du siehst auch keine von anderen.
