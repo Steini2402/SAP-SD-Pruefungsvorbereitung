@@ -1,6 +1,6 @@
-SAP SD Quiz zum Üben
+SAP SD Quiz zum Üben 
 
-Ich habe aus unserem Fragenkatalog ein Quiz gebaut, das du direkt auf dem Handy nutzen kannst. Es sind 60 Fragen mit Mehrfachauswahl.
+Ich habe aus unserem Fragenkatalog ein Quiz gebaut, das du direkt auf dem Handy nutzen kannst. Es sind aktuell 60 Fragen mit Mehrfachauswahl, die weiter ergänzt werden.
 
 Link: https://steini2402.github.io/SAP-SD-Pr-fungsvorbereitung/
 
@@ -20,6 +20,7 @@ So funktioniert es:
 - Mit „Beenden“ kannst du jederzeit aufhören und bekommst dein Ergebnis für die Fragen, die du beantwortet hast.
 
 Auf der Startseite:
+- Hilfe, hier wird alles genau erklärt
 - Wissensstand: Er zeigt in Prozent, wie viele Fragen du zuletzt richtig hattest, insgesamt und pro Kategorie.
 - Alle Fragen mischen, Prüfung mit 20 Zufallsfragen oder nach Kategorie üben
 - Fehlerliste: Dort stehen die Fragen, die du zuletzt falsch hattest. Du kannst sie gezielt wiederholen.
@@ -28,3 +29,5 @@ Wichtig:
 - Dein Stand wird nur auf deinem Handy gespeichert. Niemand sieht deine Ergebnisse, und du siehst auch keine von anderen.
 - Nutze immer denselben Weg, also entweder das App-Symbol oder den Browser. Sonst kann es sein, dass dein Stand nicht angezeigt wird.
 - Wenn du die Website-Daten im Browser löschst, ist dein Stand weg.
+
+- Copyright by Stefan Steinweg
