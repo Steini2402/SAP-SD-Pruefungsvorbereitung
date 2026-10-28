@@ -24,7 +24,7 @@ button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px so
 :root[data-theme="dark"] .primary{color:#0E1020}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .primary{color:#0E1020}}
 .ghost{padding:12px 16px;border-radius:12px;background:var(--acs);font-weight:600;font-size:15px}
-.opt{display:flex;gap:12px;align-items:flex-start}.box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--ln);margin-top:1px;display:grid;place-items:center;font-size:15px;font-weight:700;line-height:1}.opt.sel{border-color:var(--ac);background:var(--acs)}.opt.sel .box{background:var(--ac);border-color:var(--ac);color:#fff}.opt.ok .box{background:var(--ok);border-color:var(--ok);color:#fff}.opt.no .box{background:var(--no);border-color:var(--no);color:#fff}.opt.miss{border-color:var(--ok);border-style:dashed}.tag{display:block;font-size:13px;color:var(--mute);margin-top:4px}.menu{display:flex;justify-content:space-between;width:100%;text-align:left;padding:16px 18px;margin-bottom:10px;border-radius:16px;background:var(--sf);border:1px solid var(--ln);font-weight:600}.menu small{color:var(--mute);font-weight:400}.stat{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:16px 18px;margin-bottom:18px}.big{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:4px}.crow{display:flex;justify-content:space-between;font-size:15px;margin-bottom:4px}.bar{height:6px;border-radius:3px;background:var(--ln);overflow:hidden;margin-bottom:14px}
+.opt{display:flex;gap:12px;align-items:flex-start}.box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--ln);margin-top:1px;display:grid;place-items:center;font-size:15px;font-weight:700;line-height:1}.opt.sel{border-color:var(--ac);background:var(--acs)}.opt.sel .box{background:var(--ac);border-color:var(--ac);color:#fff}.opt.ok .box{background:var(--ok);border-color:var(--ok);color:#fff}.opt.no .box{background:var(--no);border-color:var(--no);color:#fff}.opt.miss{border-color:var(--ok);border-style:dashed}.tag{display:block;font-size:13px;color:var(--mute);margin-top:4px}.menu{display:flex;justify-content:space-between;width:100%;text-align:left;padding:16px 18px;margin-bottom:10px;border-radius:16px;background:var(--sf);border:1px solid var(--ln);font-weight:600}.menu small{color:var(--mute);font-weight:400}.help h3{font-size:18px;margin:24px 0 6px}.help p,.help li{margin:0 0 8px;font-size:16px}.help ul{padding-left:20px;margin:0 0 8px}.stat{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:16px 18px;margin-bottom:18px}.big{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:4px}.crow{display:flex;justify-content:space-between;font-size:15px;margin-bottom:4px}.bar{height:6px;border-radius:3px;background:var(--ln);overflow:hidden;margin-bottom:14px}
 .bar span{display:block;height:100%;background:var(--ac);border-radius:3px;transition:width .3s}
 .opt{display:block;width:100%;text-align:left;padding:16px 18px;margin-bottom:10px;border-radius:16px;background:var(--sf);border:2px solid var(--ln);font-size:17px;transition:transform .1s}
 .opt:active{transform:scale(.98)}
@@ -53,6 +53,27 @@ missed.forEach(function(id){if(know[id]===undefined)know[id]=0});
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
 function shuffle(a){a=a.slice();for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}
 function idx(q){return Q.indexOf(q)}
+function help(){
+  app.innerHTML='<div class="crow" style="align-items:center;margin-top:28px"><h1 style="margin:0">Hilfe</h1><button class="ghost" id="back">Zurück</button></div><div class="help">'+
+  '<h3>So läuft eine Runde</h3><p>Du bekommst eine Frage mit mehreren Antworten. Oben steht, wie viele davon richtig sind. Tippe alle Antworten an, die du für richtig hältst, und dann auf „Antwort prüfen“. Grün markiert richtig gewählte Antworten, rot falsch gewählte. Gestrichelt grün sind richtige Antworten, die du nicht gewählt hast. Mit „Weiter“ kommt die nächste Frage.</p>'+
+  '<h3>Punkte</h3><p>Einen Punkt gibt es nur, wenn genau die richtigen Antworten gewählt sind: alle richtigen und keine falsche. Das ist bewusst streng, damit du den Stoff wirklich sicher kannst.</p>'+
+  '<h3>Beenden</h3><p>Mit „Beenden“ oben rechts oder „Jetzt beenden“ nach dem Prüfen kannst du jederzeit aufhören. Das Ergebnis zählt nur die Fragen, die du beantwortet hast. Eine gerade offene Frage zählt nicht mit.</p>'+
+  '<h3>Startseite</h3><ul>'+
+  '<li><strong>Wissensstand:</strong> Er zeigt in Prozent, wie viele Fragen du zuletzt richtig beantwortet hast, insgesamt und pro Kategorie. Fragen, die du noch nie beantwortet hast, zählen als nicht gewusst. Eine falsche Frage zählt wieder, sobald du sie richtig beantwortest.</li>'+
+  '<li><strong>Alle Fragen mischen:</strong> Alle Fragen in zufälliger Reihenfolge.</li>'+
+  '<li><strong>Prüfung:</strong> 20 zufällige Fragen. Dein Bestwert wird bei Runden mit mindestens 20 beantworteten Fragen aktualisiert.</li>'+
+  '<li><strong>Kategorie:</strong> Nur Fragen aus einer Kategorie.</li>'+
+  '<li><strong>Fehlerliste:</strong> Fragen, die du zuletzt falsch hattest. Nach dem Ergebnis kannst du die falschen Fragen auch direkt wiederholen.</li></ul>'+
+  '<h3>Dein Stand</h3><p>Wissensstand, Fehlerliste und Bestwert werden nur auf deinem Gerät im Browser gespeichert. Niemand sonst sieht sie. Nutze immer denselben Weg, also entweder das App-Symbol oder den Browser. Wenn du die Website-Daten löschst, ist dein Stand weg.</p>'+
+  '<h3>Als App aufs Handy legen</h3><ul>'+
+  '<li><strong>Android (Chrome):</strong> Menü oben rechts (drei Punkte), dann „Zum Startbildschirm hinzufügen“.</li>'+
+  '<li><strong>iPhone (Safari):</strong> Teilen-Symbol, dann „Zum Home-Bildschirm“.</li>'+
+  '<li><strong>iPhone (Chrome):</strong> Teilen-Symbol neben der Adresszeile, dann „Zum Home-Bildschirm“.</li></ul>'+
+  '<h3>Fehler gefunden?</h3><p>Wenn eine Frage falsch oder unklar wirkt, sag dem Ersteller des Quiz Bescheid.</p></div>'+
+  '<button class="primary" id="back2">Zur Startseite</button>';
+  var bk=function(){home();window.scrollTo(0,0)};
+  document.getElementById("back").onclick=bk;document.getElementById("back2").onclick=bk;window.scrollTo(0,0);
+}
 function stats(){
   var n=Q.length,ok=0,bad=0;
   Q.forEach(function(q,k){if(know[k]===1)ok++;else if(know[k]===0)bad++});
@@ -62,13 +83,14 @@ function stats(){
   h+='<p class="hint" style="margin:4px 0 0">'+bad+' zuletzt falsch, '+(n-ok-bad)+' noch nicht beantwortet.</p></div>';
   return h}
 function home(){
-  var cats=[1,2,3,4],h='<h1>SAP SD Quiz</h1><p class="sub">'+Q.length+' Fragen, Mehrfachauswahl'+(best!==null?' – Bestwert '+best+' %':'')+'</p>'+
+  var cats=[1,2,3,4],h='<div class="crow" style="align-items:center;margin-top:28px"><h1 style="margin:0">SAP SD Quiz</h1><button class="ghost" id="help">Hilfe</button></div><p class="sub" style="margin-top:6px">'+Q.length+' Fragen, Mehrfachauswahl'+(best!==null?' – Bestwert '+best+' %':'')+'</p>'+
   stats()+'<button class="primary" id="all" style="margin-top:6px">Alle Fragen mischen</button>'+
   '<button class="primary" id="exam" style="background:var(--acs);color:var(--ink)">Prüfung: 20 Zufallsfragen</button>'+
   '<p class="sub" style="margin:26px 0 10px">Nach Kategorie</p>';
   cats.forEach(function(c){var n=Q.filter(function(q){return q[0]===c}).length;h+='<button class="menu" data-c="'+c+'"><span>Kategorie '+c+'</span><small>'+n+' Fragen</small></button>'});
   h+='<button class="menu" id="mis"'+(missed.length?'':' disabled style="opacity:.5"')+'><span>Fehlerliste üben</span><small>'+missed.length+' Fragen</small></button>';
   app.innerHTML=h;
+  document.getElementById("help").onclick=help;
   document.getElementById("all").onclick=function(){start(Q)};
   document.getElementById("exam").onclick=function(){start(shuffle(Q).slice(0,20))};
   document.getElementById("mis").onclick=function(){if(missed.length)start(Q.filter(function(q,k){return missed.indexOf(k)>-1}))};
