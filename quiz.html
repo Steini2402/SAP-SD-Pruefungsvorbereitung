@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2XN2305SXB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2XN2305SXB');
-</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -84,7 +75,7 @@ function help(){
   '<li><strong>Android (Chrome):</strong> Menü oben rechts (drei Punkte), dann „Zum Startbildschirm hinzufügen“.</li>'+
   '<li><strong>iPhone (Safari):</strong> Teilen-Symbol, dann „Zum Home-Bildschirm“.</li>'+
   '<li><strong>iPhone (Chrome):</strong> Teilen-Symbol neben der Adresszeile, dann „Zum Home-Bildschirm“.</li></ul>'+
-  '<h3>Fehler gefunden?</h3><p>Wenn eine Frage falsch oder unklar wirkt, sag dem Ersteller des Quiz Bescheid.</p></div>'+
+  '<h3>Fehler gefunden?</h3><p>Wenn eine Frage falsch oder unklar wirkt oder du Fragen zum Quiz hast, schreib mir per WhatsApp.</p><p><a class="ghost" style="display:inline-block;text-decoration:none;color:inherit" href="https://wa.me/491726202875?text=Hallo%20Stefan%2C%20zum%20SAP%20SD%20Quiz%3A%20" target="_blank" rel="noopener">Per WhatsApp schreiben</a></p><h3>Datenschutz</h3><p>Dein Lernstand bleibt auf deinem Gerät. Eine Statistik mit Google Analytics läuft nur mit deiner Zustimmung. <a href="index.html#datenschutz" style="color:inherit">Details und Widerruf</a></p></div>'+
   '<button class="primary" id="back2">Zur Startseite</button><p class="hint" style="text-align:center;margin-top:24px">Copyright © 2026 by Stefan Steinweg</p>';
   var bk=function(){home();window.scrollTo(0,0)};
   document.getElementById("back").onclick=bk;document.getElementById("back2").onclick=bk;window.scrollTo(0,0);
@@ -153,6 +144,29 @@ function result(n){n=n||deck.length;
   document.getElementById("hm").onclick=home;
 }
 home();
+</script>
+<script>
+(function(){
+var ID="G-2XN2305SXB",KEY="sd-consent",PRIV="index.html#datenschutz";
+function get(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+function put(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+function load(){if(window.__gaLoaded)return;window.__gaLoaded=1;window["ga-disable-"+ID]=false;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config",ID);var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+ID;document.head.appendChild(s)}
+function off(){window["ga-disable-"+ID]=true;document.cookie.split(";").forEach(function(c){var n=c.split("=")[0].trim();if(n.indexOf("_ga")===0)document.cookie=n+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"})}
+function status(){var e=document.getElementById("cs");if(e){var v=get();e.textContent=v==="yes"?"Aktuell: Statistik erlaubt.":v==="no"?"Aktuell: Statistik abgelehnt.":"Aktuell: Noch keine Auswahl getroffen, es wird nichts übertragen."}}
+function banner(){
+var st=document.createElement("style");
+st.textContent="#cb{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--sf,#fff);color:var(--ink,#14182B);border-top:1px solid var(--ln,#D6DAEA);padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));font:15px/1.4 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}#cb .i{max-width:520px;margin:0 auto}#cb p{margin:0 0 10px}#cb a{color:inherit}#cb .r{display:flex;gap:10px}#cb button{flex:1;padding:12px;border:0;border-radius:12px;background:var(--acs,#E3E6FF);color:inherit;font:inherit;font-weight:600;cursor:pointer}";
+document.head.appendChild(st);
+var b=document.createElement("div");b.id="cb";b.setAttribute("role","dialog");b.setAttribute("aria-label","Einwilligung zur Statistik");
+b.innerHTML='<div class="i"><p>Darf ich mit Google Analytics eine Nutzungsstatistik erfassen? Dabei werden Daten an Google übertragen. Ohne deine Zustimmung wird nichts geladen. <a href="'+PRIV+'">Datenschutz</a></p><div class="r"><button id="cn">Ablehnen</button><button id="cy">Zustimmen</button></div></div>';
+document.body.appendChild(b);
+document.getElementById("cn").onclick=function(){window.sdConsent.set("no")};
+document.getElementById("cy").onclick=function(){window.sdConsent.set("yes")};
+}
+window.sdConsent={set:function(v){put(v);if(v==="yes")load();else off();var b=document.getElementById("cb");if(b)b.remove();status()}};
+var c=get();if(c==="yes")load();else if(c===null)banner();
+status();
+})();
 </script>
 </body>
 </html>

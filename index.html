@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2XN2305SXB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-2XN2305SXB');
-</script>  
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -50,6 +41,7 @@ li{margin-bottom:8px}
 .mute{color:var(--mute);font-size:15px}
 .end{margin-top:38px}
 .foot{text-align:center;color:var(--mute);font-size:14px;margin:26px 0 0}
+.row2{display:flex;gap:10px}.btn2{flex:1;padding:12px;border:0;border-radius:12px;background:var(--acs);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
 </style>
 </head>
 <body>
@@ -102,10 +94,43 @@ li{margin-bottom:8px}
 <p>Wissensstand, Fehlerliste und Bestwert werden nur auf deinem Gerät im Browser gespeichert. Niemand sonst sieht sie. Nutze immer denselben Weg, also entweder das App-Symbol oder den Browser. Wenn du die Website-Daten löschst, ist dein Stand weg.</p>
 
 <h2>Fehler gefunden?</h2>
-<p>Wenn eine Frage falsch oder unklar wirkt, sag dem Ersteller des Quiz Bescheid.</p>
+<p>Wenn eine Frage falsch oder unklar wirkt oder du Fragen zum Quiz hast, schreib mir per WhatsApp.</p>
+<p><a class="go" style="background:var(--acs);color:var(--ink)" href="https://wa.me/491726202875?text=Hallo%20Stefan%2C%20zum%20SAP%20SD%20Quiz%3A%20" target="_blank" rel="noopener">Per WhatsApp schreiben</a></p>
 
 <a class="go end" href="quiz.html">Quiz starten</a>
-<p class="foot">Copyright © 2026 by Stefan Steinweg</p>
+<h2 id="datenschutz">Datenschutz</h2>
+<p><strong>Verantwortlich:</strong> Stefan Steinweg. Kontakt über den WhatsApp-Link weiter oben.</p>
+<p><strong>Lernstand:</strong> Wissensstand, Fehlerliste und Bestwert bleiben auf deinem Gerät im Browser und werden nicht an mich oder andere übertragen.</p>
+<p><strong>Hosting:</strong> Die Seite wird über GitHub Pages bereitgestellt. Dabei verarbeitet GitHub technisch notwendige Verbindungsdaten wie deine IP-Adresse.</p>
+<p><strong>Statistik (Google Analytics):</strong> Nur mit deiner Zustimmung nutze ich Google Analytics, um zu sehen, wie oft die Seiten aufgerufen werden. Dabei werden Daten wie Seitenaufrufe, ungefährer Standort, Gerät und Browser an Google übertragen, auch in Länder außerhalb der EU. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 TDDDG). Ohne Zustimmung wird nichts geladen. Du kannst sie jederzeit ändern:</p>
+<p id="cs" class="mute" role="status"></p>
+<div class="row2"><button class="btn2" onclick="sdConsent.set('no')">Statistik ablehnen</button><button class="btn2" onclick="sdConsent.set('yes')">Statistik erlauben</button></div>
+<p style="margin-top:14px"><strong>WhatsApp:</strong> Der Kontakt-Link öffnet erst beim Antippen WhatsApp. Vorher werden keine Daten dorthin übertragen.</p>
+<p><strong>Deine Rechte:</strong> Du kannst Auskunft, Berichtigung und Löschung verlangen, eine Einwilligung widerrufen und dich bei einer Datenschutzaufsichtsbehörde beschweren.</p>
+<p class="foot">Copyright © 2026 by Stefan Steinweg · <a href="#datenschutz" style="color:inherit">Datenschutz</a></p>
 </main>
+<script>
+(function(){
+var ID="G-2XN2305SXB",KEY="sd-consent",PRIV="#datenschutz";
+function get(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+function put(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+function load(){if(window.__gaLoaded)return;window.__gaLoaded=1;window["ga-disable-"+ID]=false;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config",ID);var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+ID;document.head.appendChild(s)}
+function off(){window["ga-disable-"+ID]=true;document.cookie.split(";").forEach(function(c){var n=c.split("=")[0].trim();if(n.indexOf("_ga")===0)document.cookie=n+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"})}
+function status(){var e=document.getElementById("cs");if(e){var v=get();e.textContent=v==="yes"?"Aktuell: Statistik erlaubt.":v==="no"?"Aktuell: Statistik abgelehnt.":"Aktuell: Noch keine Auswahl getroffen, es wird nichts übertragen."}}
+function banner(){
+var st=document.createElement("style");
+st.textContent="#cb{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--sf,#fff);color:var(--ink,#14182B);border-top:1px solid var(--ln,#D6DAEA);padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));font:15px/1.4 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}#cb .i{max-width:520px;margin:0 auto}#cb p{margin:0 0 10px}#cb a{color:inherit}#cb .r{display:flex;gap:10px}#cb button{flex:1;padding:12px;border:0;border-radius:12px;background:var(--acs,#E3E6FF);color:inherit;font:inherit;font-weight:600;cursor:pointer}";
+document.head.appendChild(st);
+var b=document.createElement("div");b.id="cb";b.setAttribute("role","dialog");b.setAttribute("aria-label","Einwilligung zur Statistik");
+b.innerHTML='<div class="i"><p>Darf ich mit Google Analytics eine Nutzungsstatistik erfassen? Dabei werden Daten an Google übertragen. Ohne deine Zustimmung wird nichts geladen. <a href="'+PRIV+'">Datenschutz</a></p><div class="r"><button id="cn">Ablehnen</button><button id="cy">Zustimmen</button></div></div>';
+document.body.appendChild(b);
+document.getElementById("cn").onclick=function(){window.sdConsent.set("no")};
+document.getElementById("cy").onclick=function(){window.sdConsent.set("yes")};
+}
+window.sdConsent={set:function(v){put(v);if(v==="yes")load();else off();var b=document.getElementById("cb");if(b)b.remove();status()}};
+var c=get();if(c==="yes")load();else if(c===null)banner();
+status();
+})();
+</script>
 </body>
 </html>
