@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SAP SD Quiz">
+<meta name="author" content="Stefan Steinweg">
+<meta name="theme-color" content="#3B4BFF">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest-en.webmanifest">
+<title>SAP SD Quiz</title>
+<style>
+:root{--bg:#EEF1F8;--sf:#fff;--ink:#14182B;--mute:#5B6280;--ac:#3B4BFF;--acs:#E3E6FF;--ok:#12A150;--oks:#D9F5E5;--no:#E5484D;--nos:#FDE3E4;--ln:#D6DAEA;--onac:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1020;--sf:#1A1D33;--ink:#ECEEFA;--mute:#9AA1C4;--ac:#8793FF;--acs:#2A2F5C;--ok:#3DD68C;--oks:#12382A;--no:#FF6B70;--nos:#411B1F;--ln:#2B3050;--onac:#0E1020;color-scheme:dark}}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:520px;margin:0 auto;padding:28px 18px 44px}
+.hero{text-align:center}
+.ic{width:88px;height:88px;border-radius:22%;display:block;margin:0 auto 16px}
+h1{font-size:36px;line-height:1.1;letter-spacing:-.02em;margin:0 0 10px}
+h2{font-size:22px;line-height:1.25;letter-spacing:-.01em;margin:38px 0 10px}
+p{margin:0 0 12px}
+.lead{color:var(--mute);font-size:18px;margin:0 auto 22px;max-width:30em}
+.go{display:block;text-align:center;text-decoration:none;padding:17px;border-radius:16px;background:var(--ac);color:var(--onac);font-weight:700;font-size:19px}
+.go:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.demo{border:1px solid var(--ln);border-radius:20px;padding:16px}
+.demo .q{font-size:19px;font-weight:700;line-height:1.3;margin:0 0 4px}
+.demo .hint{color:var(--mute);font-size:14px;margin:0 0 14px}
+.opt{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;margin-bottom:10px;border-radius:16px;background:var(--sf);border:2px solid var(--ln);font-size:16px}
+.box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--ln);display:grid;place-items:center;font-size:15px;font-weight:700;line-height:1;margin-top:1px}
+.ok{border-color:var(--ok);background:var(--oks)}.ok .box{background:var(--ok);border-color:var(--ok);color:#fff}
+.no{border-color:var(--no);background:var(--nos)}.no .box{background:var(--no);border-color:var(--no);color:#fff}
+.miss{border-color:var(--ok);border-style:dashed}
+.cap{color:var(--mute);font-size:14px;margin:4px 0 0}
+ul{padding-left:20px;margin:0 0 12px}
+li{margin-bottom:8px}
+.mute{color:var(--mute);font-size:15px}
+.end{margin-top:38px}
+.foot{text-align:center;color:var(--mute);font-size:14px;margin:26px 0 0}
+.lang{text-align:right;font-size:15px;color:var(--mute);margin:0 0 10px}.lang a{color:inherit}
+.row2{display:flex;gap:10px}.btn2{flex:1;padding:12px;border:0;border-radius:12px;background:var(--acs);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+<main>
+<nav class="lang" aria-label="Language"><a href="index.html" lang="en" hreflang="en">Deutsch</a> · <strong>English</strong></nav>
+<header class="hero">
+<img class="ic" src="icon-192.png" alt="">
+<h1>SAP SD Quiz</h1>
+<p class="lead">Practice the questions from the certification catalog on your phone. Read the short guide, then get started.</p>
+<a class="go" href="quiz-en.html">Start quiz</a>
+</header>
+<h2>How a round works</h2>
+<p>Each question has several answers. The top tells you how many of them are correct. Tap every answer you think is right, then tap “Check answer”. Then you see the solution:</p>
+<div class="demo" role="img" aria-label="Example of an evaluated question with four answers: correctly selected, wrongly selected, correct but not selected, and neutral">
+<p class="q">Sample question</p>
+<p class="hint">Choose 2 correct answers.</p>
+<div class="opt ok"><span class="box">✓</span><span>Correct and selected by you: green</span></div>
+<div class="opt no"><span class="box">✕</span><span>Wrong, but selected by you: red</span></div>
+<div class="opt miss"><span class="box"></span><span>Correct, but not selected: dashed green</span></div>
+<div class="opt"><span class="box"></span><span>Wrong and not selected: stays unmarked</span></div>
+<p class="cap">Just an example, nothing here can be tapped.</p>
+</div>
+<p class="mute" style="margin-top:12px">Note: the questions are being translated step by step. Questions that are not translated yet appear in German.</p>
+<h2>Scoring</h2>
+<p>You only get a point if exactly the correct answers are selected: all correct ones and no wrong one. This is deliberately strict so you really master the material.</p>
+<h2>Ending</h2>
+<p>You can stop any time with “End” at the top right or “End now” after checking. The result counts only the questions you answered.</p>
+<h2>On the quiz start page</h2>
+<ul>
+<li><strong>Knowledge level:</strong> The percentage of questions you last answered correctly, overall and per category. Questions you have never answered count as not known.</li>
+<li><strong>Shuffle all questions:</strong> All questions in random order.</li>
+<li><strong>Exam:</strong> 20 random questions.</li>
+<li><strong>Category:</strong> Practice only questions from one category.</li>
+<li><strong>Practice mistakes:</strong> The questions you last got wrong. After the result you can also repeat wrong questions right away.</li>
+<li><strong>Reset progress:</strong> At the very bottom, if you want to start from zero.</li>
+</ul>
+<h2>Install as an app</h2>
+<p>This is optional. First open the quiz with “Start quiz” and add it from there, otherwise you will land on this page again later.</p>
+<ul>
+<li><strong>Android (Chrome):</strong> Menu at the top right (three dots), then “Add to Home screen” or “Install app”.</li>
+<li><strong>iPhone (Safari):</strong> Share icon, then “Add to Home Screen”.</li>
+<li><strong>iPhone (Chrome):</strong> Share icon next to the address bar, then “Add to Home Screen”.</li>
+</ul>
+<p class="mute">Menu names may differ slightly depending on the version.</p>
+<h2>Your progress</h2>
+<p>Knowledge level, mistakes list and best score are stored only on your device in the browser. Nobody else sees them. Always use the same way in, either the app icon or the browser. If you clear the website data, your progress is gone.</p>
+<h2>Found a mistake?</h2>
+<p>If a question looks wrong or unclear, or you have questions about the quiz, message me on WhatsApp.</p>
+<p><a class="go" style="background:var(--acs);color:var(--ink)" href="https://wa.me/491726202875?text=Hi%20Stefan%2C%20about%20the%20SAP%20SD%20Quiz%3A%20" target="_blank" rel="noopener">Message on WhatsApp</a></p>
+<a class="go end" href="quiz-en.html">Start quiz</a>
+<h2 id="privacy">Privacy</h2>
+<p><strong>Responsible:</strong> Stefan Steinweg. Contact via the WhatsApp link above.</p>
+<p><strong>Progress:</strong> Knowledge level, mistakes list and best score stay on your device in the browser and are not transmitted to me or anyone else.</p>
+<p><strong>Hosting:</strong> The site is served via GitHub Pages. GitHub processes technically necessary connection data such as your IP address.</p>
+<p><strong>Statistics (Google Analytics):</strong> Only with your consent do I use Google Analytics to see how often the pages are opened. Data such as page views, approximate location, device and browser is transmitted to Google, also to countries outside the EU. The legal basis is your consent (Art. 6(1)(a) GDPR, § 25 TDDDG). Nothing is loaded without your consent. You can change your choice at any time:</p>
+<p id="cs" class="mute" role="status"></p>
+<div class="row2"><button class="btn2" onclick="sdConsent.set('no')">Decline statistics</button><button class="btn2" onclick="sdConsent.set('yes')">Allow statistics</button></div>
+<p style="margin-top:14px"><strong>WhatsApp:</strong> The contact link only opens WhatsApp when you tap it. Before that, no data is sent there.</p>
+<p><strong>Your rights:</strong> You can request access, correction and deletion, withdraw consent, and complain to a data protection supervisory authority.</p>
+<p class="foot">Copyright © 2026 by Stefan Steinweg · <a href="#privacy" style="color:inherit">Privacy</a></p>
+</main>
+<script>
+(function(){
+var ID="G-2XN2305SXB",KEY="sd-consent",PRIV="#privacy";
+function get(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+function put(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+function load(){if(window.__gaLoaded)return;window.__gaLoaded=1;window["ga-disable-"+ID]=false;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag("js",new Date());gtag("config",ID);var s=document.createElement("script");s.async=true;s.src="https://www.googletagmanager.com/gtag/js?id="+ID;document.head.appendChild(s)}
+function off(){window["ga-disable-"+ID]=true;document.cookie.split(";").forEach(function(c){var n=c.split("=")[0].trim();if(n.indexOf("_ga")===0)document.cookie=n+"=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/"})}
+function status(){var e=document.getElementById("cs");if(e){var v=get();e.textContent=v==="yes"?"Currently: statistics allowed.":v==="no"?"Currently: statistics declined.":"Currently: no choice made yet, nothing is transmitted."}}
+function banner(){
+var st=document.createElement("style");
+st.textContent="#cb{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--sf,#fff);color:var(--ink,#14182B);border-top:1px solid var(--ln,#D6DAEA);padding:14px 18px calc(14px + env(safe-area-inset-bottom,0px));font:15px/1.4 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}#cb .i{max-width:520px;margin:0 auto}#cb p{margin:0 0 10px}#cb a{color:inherit}#cb .r{display:flex;gap:10px}#cb button{flex:1;padding:12px;border:0;border-radius:12px;background:var(--acs,#E3E6FF);color:inherit;font:inherit;font-weight:600;cursor:pointer}";
+document.head.appendChild(st);
+var b=document.createElement("div");b.id="cb";b.setAttribute("role","dialog");b.setAttribute("aria-label","Statistics consent");
+b.innerHTML='<div class="i"><p>May I collect usage statistics with Google Analytics? This transfers data to Google. Nothing is loaded without your consent. <a href="'+PRIV+'">Privacy</a></p><div class="r"><button id="cn">Decline</button><button id="cy">Accept</button></div></div>';
+document.body.appendChild(b);
+document.getElementById("cn").onclick=function(){window.sdConsent.set("no")};
+document.getElementById("cy").onclick=function(){window.sdConsent.set("yes")};
+}
+window.sdConsent={set:function(v){put(v);if(v==="yes")load();else off();var b=document.getElementById("cb");if(b)b.remove();status()}};
+var c=get();if(c==="yes")load();else if(c===null)banner();
+status();
+})();
+</script>
+</body>
+</html>
