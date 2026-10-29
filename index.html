@@ -134,10 +134,5 @@ var c=get();if(c==="yes")load();else if(c===null)banner();
 status();
 })();
 </script>
-<script>
-if("serviceWorker" in navigator){
-  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
-}
-</script>
 </body>
 </html>
