@@ -1,1 +1,192 @@
-PLACEHOLDER_QUIZ
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SAP SD Quiz">
+<meta name="author" content="Stefan Steinweg">
+<meta name="theme-color" content="#3B4BFF">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<title>SAP SD Quiz</title>
+<style>
+:root{--bg:#EEF1F8;--sf:#fff;--ink:#14182B;--mute:#5B6280;--ac:#3B4BFF;--acs:#E3E6FF;--ok:#12A150;--oks:#D9F5E5;--no:#E5484D;--nos:#FDE3E4;--ln:#D6DAEA;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1020;--sf:#1A1D33;--ink:#ECEEFA;--mute:#9AA1C4;--ac:#8793FF;--acs:#2A2F5C;--ok:#3DD68C;--oks:#12382A;--no:#FF6B70;--nos:#411B1F;--ln:#2B3050;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1020;--sf:#1A1D33;--ink:#ECEEFA;--mute:#9AA1C4;--ac:#8793FF;--acs:#2A2F5C;--ok:#3DD68C;--oks:#12382A;--no:#FF6B70;--nos:#411B1F;--ln:#2B3050;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+#app{max-width:480px;margin:0 auto;padding:20px 18px 32px}
+h1{font-size:34px;line-height:1.1;letter-spacing:-.02em;margin:28px 0 6px}
+h2{font-size:26px;line-height:1.2;letter-spacing:-.015em;margin:8px 0 22px;font-weight:700}
+.sub{color:var(--mute);margin:0 0 18px;font-size:15px}
+button{font:inherit;color:inherit;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.primary{width:100%;padding:16px;border-radius:16px;background:var(--ac);color:#fff;font-weight:600;font-size:18px;margin-top:18px}
+:root[data-theme="dark"] .primary{color:#0E1020}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .primary{color:#0E1020}}
+.ghost{padding:12px 16px;border-radius:12px;background:var(--acs);font-weight:600;font-size:15px}
+.opt{display:flex;gap:12px;align-items:flex-start}.box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--ln);margin-top:1px;display:grid;place-items:center;font-size:15px;font-weight:700;line-height:1}.opt.sel{border-color:var(--ac);background:var(--acs)}.opt.sel .box{background:var(--ac);border-color:var(--ac);color:#fff}.opt.ok .box{background:var(--ok);border-color:var(--ok);color:#fff}.opt.no .box{background:var(--no);border-color:var(--no);color:#fff}.opt.miss{border-color:var(--ok);border-style:dashed}.tag{display:block;font-size:13px;color:var(--mute);margin-top:4px}.menu{display:flex;justify-content:space-between;width:100%;text-align:left;padding:16px 18px;margin-bottom:10px;border-radius:16px;background:var(--sf);border:1px solid var(--ln);font-weight:600}.menu small{color:var(--mute);font-weight:400}.help h3{font-size:18px;margin:24px 0 6px}.help p,.help li{margin:0 0 8px;font-size:16px}.help ul{padding-left:20px;margin:0 0 8px}.stat{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:16px 18px;margin-bottom:18px}.big{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:4px}.crow{display:flex;justify-content:space-between;font-size:15px;margin-bottom:4px}.bar{height:6px;border-radius:3px;background:var(--ln);overflow:hidden;margin-bottom:14px}
+.bar span{display:block;height:100%;background:var(--ac);border-radius:3px;transition:width .3s}
+.opt{display:block;width:100%;text-align:left;padding:16px 18px;margin-bottom:10px;border-radius:16px;background:var(--sf);border:2px solid var(--ln);font-size:17px;transition:transform .1s}
+.opt:active{transform:scale(.98)}
+.opt.ok{border-color:var(--ok);background:var(--oks)}
+.opt.no{border-color:var(--no);background:var(--nos)}
+.opt:disabled{cursor:default}
+.exp{margin:14px 2px 0;color:var(--mute);font-size:15px}
+.score{font-size:64px;font-weight:800;letter-spacing:-.03em;margin:30px 0 4px;line-height:1}
+.row{display:flex;gap:10px;margin-top:12px}
+details{margin-top:28px;background:var(--sf);border-radius:16px;padding:14px 16px;border:1px solid var(--ln)}
+summary{font-weight:600;cursor:pointer}
+textarea{width:100%;min-height:150px;margin-top:10px;padding:12px;border-radius:12px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);font:15px/1.4 inherit;resize:vertical}
+.hint{color:var(--mute);font-size:14px;margin:10px 0 0}
+#msg{font-size:14px;margin:10px 0 0;min-height:1em}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+var Q=[[1,"Welche der folgenden Aussagen zu den Organisationseinheiten Vertriebsweg und Sparte sind richtig?",[["Man benötigt neben der Verkaufsorganisation und der Sparte mindestens einen Vertriebsweg, um einen Vertriebsbereich abbilden zu können.",1],["Man benötigt mindestens eine Sparte, um Kundenaufträge anlegen zu können.",1],["Wenn bereits unterschiedliche Vertriebswege angelegt wurden, dann erübrigt sich die Anlage von eigenen Sparten.",0],["Es ist möglich, mit einer spartenübergreifenden Sparte mehrere Produktlinien zusammenzufassen.",1]]],[1,"In SAP werden ganz grob gesehen die Anwendungen und das Customizing unterschieden Welche Aussagen zum Customizing sind korrekt?",[["Man unterscheidet zwischen dem mandantenabhängigen und -unabhängigen Customizing.",1],["Im Customizing können Sie Modifikationen (Programmerweiterungen) am SAP-System durchführen.",0],["Im Customizing können Sie die unternehmensneutral ausgelieferten Funktionalitäten des SAP-System den spezifischen betriebswirtschaftlichen Anforderungen Ihres Unternehmens anpassen.",1]]],[1,"Welche der folgenden Aussagen zur Organisationseinheit Werk, Versandstelle, Lagerort und Buchungskreis sind richtig?",[["Das Werk spielt im Modul SD überhaupt keine Rolle.",0],["Die Versandstelle gibt an, von wo aus (räumlich gesehen) ein Vertriebsbereich versendet.",1],["Die Bewertung der Warenbestände erfolgt auf Ebene des Werkes.",1],["Ein Werk kann mehreren Verkaufsorganisationen zugeordnet werden.",1]]],[1,"Zur Abbildung des Vertriebsprozesses sind (werden)...",[["...keine eigenen Organisationseinheiten erforderlich. Es wird auf die allgemeinen Organisationseinheiten zurückgegriffen.",0],["...eigene Organisationseinheiten erforderlich.",1],["...ausschließlich solche Organisationseinheiten verwendet, die auch in der Anwendungskomponente SD zur Anwendung kommen.",0],["...Organisationseinheiten verwendet, die sowohl im Vertrieb als auch in den anderen Modulen des SAP Systems benötigt werden.",1]]],[1,"Welche der folgenden Aussagen zur Organisationseinheit Versandstelle ist richtig?",[["Die Organisationseinheit Versandstelle setzt das Vorhandensein der Organisationseinheit Lagerort voraus.",0],["Der Begriff Versandstelle bezieht sich immer auf real existierende Gegebenheiten, wie z.B. ein Tor, eine Rampe, etc. und gilt im Versandprozess nur als Zusatzinformation.",0],["Eine Versandstelle kann mehreren Werken zugeordnet sein.",1]]],[1,"Welche der folgenden Organisationseinheiten sind nötig, um einen Vertriebsbereich abzubilden?",[["Versandstelle",0],["Lagerort",0],["Vertriebsweg",1],["Verkaufsorganisation",1],["Sparte",1]]],[1,"Als Verkaufssachbearbeiter beginnen Sie oft Ihre Arbeit mit der Belegerfassung. Was können Sie tun, um schneller in diese Anwendung zu gelangen?",[["Sie können den Transaktionscode für die Anwendung in Ihrer Favoritenliste eintragen, um schneller zum Einstiegsbild zu gelangen.",1],["Sie können über Ihre SAP-GUI-Verknüpfung zur Schnellanmeldung gleichzeitig eine vorgegebene Transaktion aufrufen.",1],["Sie können über das Menü \"Zusätze\" eine Starttransaktion festlegen, damit sich sofort nach der Anmeldung die gewünschte Anwendung öffnet.",1],["Am Ende eines Arbeitstages gehen Sie jeweils zur Belegerfassung. Bei der Anmeldung am nächsten Morgen wird Ihnen dann direkt die Belegerfassungstransaktion angezeigt.",0]]],[1,"Sie möchten in der Transaktion \"VD03\" das Eingabefeld Verkaufsorganisation dauerhaft mit einem bestimmten Vorschlagswert belegen. Wie gehen Sie dabei vor?",[["Im Workplace tragen Sie den Parameterwert auf der Registerkarte \"Feldvorbelegungen\" ein.",0],["In den Benutzervorgaben tragen Sie auf der Registerkarte \"Parameter\" die Kombination aus Parametername und -wert ein.",1],["In der Erfassungsmaske tragen Sie in das gewünschte Feld den Wert ein. Anschließend drücken Sie die rechte Maustaste und wählen \"Parameterwert übernehmen\".",0]]],[1,"Welche der folgenden Aussagen zur Organisationseinheit Lagerort sind richtig?",[["Lagerorte werden immer über das sogenannte Lean Warehouse Management geführt.",0],["Der Lagerort dient der Lagerung des Materials an verschiedenen Orten oder Räumen innerhalb eines Werkes.",0],["Die Organisationseinheit Lagerort kann von allen logistischen Bereichen des SAP Systems genutzt werden.",1],["Der Lagerort dient der mengenmäßigen Bestandsführung.",1]]],[1,"Welche der folgenden Aussagen zu den Organisationseinheiten Versandstelle/Werk/Lagerort sind richtig?",[["Eine Versandstelle ist immer genau einem Werk eindeutig zugeordnet.",0],["Das Vorhandensein der Organisationseinheit Werk ist Voraussetzung dafür, dass Lieferungen erfasst und physisch versandt werden können.",0],["Die Versandstelle ist diejenige organisatorische Einheit im SAP System, die für die Abwicklung des Versands zuständig ist.",1],["Ein Lagerort bezeichnet einen physisch existierenden Ort innerhalb des Lagers.",0]]],[1,"Welche der folgenden Aussagen für Buchungskreis und Mandant sind richtig?",[["In jedem Mandanten werden jeweils komplett getrennte Stammsätze für Kunden gespeichert und gepflegt.",1],["In jedem Buchungskreis werden jeweils komplett getrennte Stammsätze für Kunden gespeichert und gepflegt.",0],["Ein Mandant kann nur einen Buchungskreis haben.",0],["Für einen Buchungskreis kann eine Bilanz erstellt werden.",1]]],[1,"Eine Organisationseinheit stellt (ist)...",[["...immer auch eine juristische Einheit dar.",0],["...immer eine organisatorische und (gleichzeitig) juristische Einheit dar.",0],["...einen Baustein in der betrieblichen Organisationsstruktur dar.",1],["...eine organisatorische und manchmal (gleichzeitig auch) eine juristische Einheit dar.",1]]],[1,"Sie befinden sich in der Transaktion \"Anfrage anlegen\". Sie möchten das bereits erfasste Belegdatum bei erneutem Start der Transaktion wieder verfügbar haben, da sie oft mehrmals hintereinander Anfragen mit demselben Datum erfassen. Das Belegdatum soll dabei als Vorschlagswert zur Verfügung stehen, der von Ihnen überschrieben werden kann. Wie gehen Sie dabei vor?",[["Sie wählen aus der Menüleiste \"System> Benutzervorgaben> nehmen Daten\".",0],["Sie wählen aus der Menüleiste \"System> Benutzervorgaben> eigene Daten\".",0],["Sie wählen aus der Menüleiste \"System> Benutzervorgaben> halten Daten\".",1]]],[1,"Mit Hilfe der Benutzervorgaben kann z.B. die Verkauforganisation als Benutzerparameter so festgelegt werden, dass dieser in Zukunft automatisch in den Feldern als Vorschlagswert eingetragen ist. Was ist in Bezug auf Benutzervorgaben zu beachten?",[["Benutzerparameter gehen nach einer Abmeldung verloren und müssen nach jeder Anmeldung neu eingetragen werden.",0],["Benutzerparameter gelten nur für den Benutzer, der die Parameter nach Anmeldung mit seinem Benutzernamen eingetragen hat.",1],["Benutzerparameter können später nicht mehr geändert werden.",0],["Die Verwendung von Benutzerparametern spart Zeit und verringert die Zahl der Fehleingaben.",1]]],[1,"Welche der folgenden Aussagen zur Versandstelle sind richtig?",[["Jede Auslieferung wird von (genau) einer Versandstelle bearbeitet.",1],["Einem Werk können mehrere Versandstellen zugeordnet werden.",1],["Das Vorhandensein von Versandstellen ist Voraussetzung dafür, dass Auslieferungen angelegt werden können.",1],["Die Versandstelle befindet sich immer auf Kopfebene im Kundenauftrag.",0]]],[1,"Sie wollen in einer Anwendung (z B. Verkauf) einen Stammsatz finden. Welche Hilfsmittel stehen Ihnen im SAP System zur Verfügung, um im System angelegte Stammsätze zu suchen?",[["Sofern zu einem Eingabefeld die Wertehilfe zur Verfügung steht, befindet sich neben dem Feld ein Druckknopf. Wenn Sie diesen Druckknopf anklicken, werden ihnen die Suchhilfen zu den Feldern angezeigt.",1],["Sie positionieren den Cursor im entsprechenden Feld. Anschließend drücken Sie die Funktionstaste \"F4\" und erhalten somit die Suchhilfen angezeigt.",1],["Sie rufen mit der Funktionstaste \"F1\" die Hilfe auf und lassen sich alle im System angelegten Datensätze anzeigen. Anschließend wählen Sie durch Doppelklick den richtigen Stammsstz aus.",0]]],[1,"Welche der folgenden Aussagen zum Vertriebsbereich ist richtig?",[["Ein Vertriebsbereich ist eine eigenständige Organisationseinheit.",0],["Die Verknüpfung Buchungskreis zu Vertriebsbereich erfolgt über die Organisationseinheit Verkaufsorganisation.",1],["Der Vertriebsbereich ist eine Kombination von Verkaufsorganisation, Versandstelle und Sparte.",0]]],[1,"Welche der folgenden Aussagen zur Organisationseinheit Verkaufsorganisation sind richtig?",[["Einem Buchungskreis können mehrere Verkaufsorganisationen zugeordnet werden.",1],["Über die Organisationseinheit Verkaufsorganisation wird der Vertriebsbereich dem Buchungskreis zugeordnet.",1],["Einer Verkaufsorganisation kann maximal ein Vertriebsweg zugeordnet werden.",0],["Einer Verkaufsorganisation können mehrere Werke zugeordnet werden.",1]]],[1,"Mit Hilfe von Modi können Sie mehrere Transaktionen gleichzeitig öffnen. Sie nutzen einen Modus, um jederzeit Stammdaten ändern zu können. Warum sollte ein Modus, der nicht mehr benötigt wird, geschlossen werden?",[["Viele geöffnete Modi verbrauchen mehr Ressourcen auf ihrem Rechner und verlangsamen diesen.",1],["Es kann vorkommen, dass Sie zwischen vielen geöffneten Modi nicht mehr wechseln können, da Sie beliebig viele Modi öffnen können.",0],["Es kann vorkommen, dass Daten aus Ihrem geöffneten Modus durch andere Benutzer überschrieben werden.",0],["Es kann vorkommen, dass Daten aus Ihrem geöffneten Modus durch andere Benutzer nicht bearbeitet werden können, da sie zur Bearbeitung gesperrt sind.",1]]],[1,"Sie befinden sich im SAP-System und wollen einen Stammsatz anzeigen Dazu lassen Sie sich über die Matchcode-Hilfe Werte anzeigen. Die Liste enthält, obwohl Sie sicher sind, dass der gesuchte Stammsatzvorhanden ist, diesen nicht. Woran kann dies liegen?",[["Sie haben nicht die nötigen Berechtigungen zur Anzeige des Stammsatzes.",0],["Ihre Einschränkungen in der Matchcodesuche schließen den Stammsatz aus.",1],["Es sind mehr Einträge vorhanden, als durch die \"maximale Trefferanzahl\" angezeigt werden können.",1]]],[1,"Alle Verkaufsbelege können in Form von Nachrichten ausgegeben werden. Welche Aussagen in Bezug auf Nachrichten treffen zu?",[["Über das Icon Druckansicht in der Bestellung kann die Nachricht am Bildschirm angezeigt werden.",1],["Nachrichten müssen immer sofort ausgegeben werden.",0],["Nachrichten werden in der Regel immer manuell ausgegeben. Nur in Ausnahmefällen wird ein Hintergrundjob dafür verwendet.",0],["Zur Ausgabe der Nachrichten stehen mehrere Möglichkeiten zur Verfügung. So können diese z.B. gedruckt, per Mail versendet oder gefaxt werden.",1]]]];
+</script>
+<script>
+(function(){
+var KEY="sap-sd-quiz-v1";
+function load(){try{var r=localStorage.getItem(KEY);return r?JSON.parse(r):{}}catch(e){return {}}}
+function save(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+var state=load();
+var app=document.getElementById("app");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function catName(c){return "Kategorie "+c}
+
+function home(){
+  var known=0,total=0;
+  var byCat={};
+  Q.forEach(function(q,i){
+    var rec=state[i];
+    total++;
+    byCat[q[0]]=byCat[q[0]]||{total:0,known:0};
+    byCat[q[0]].total++;
+    if(rec&&rec.ok===true){known++;byCat[q[0]].known++}
+  });
+  var pct=total?Math.round(known/total*100):0;
+  var h='<h1>SAP SD Quiz</h1><p class="sub">'+total+' Fragen im Katalog</p>';
+  h+='<div class="stat"><div class="big">'+pct+' %</div><p class="sub" style="margin:0">Wissensstand: '+known+' von '+total+' Fragen richtig</p></div>';
+  Object.keys(byCat).sort().forEach(function(c){
+    var d=byCat[c];
+    var p=d.total?Math.round(d.known/d.total*100):0;
+    h+='<div class="crow"><span>'+catName(c)+'</span><span>'+d.known+'/'+d.total+' · '+p+' %</span></div><div class="bar"><span style="width:'+p+'%"></span></div>';
+  });
+  h+='<button class="menu" onclick="start(\'all\')">Alle Fragen mischen <small>'+total+'</small></button>';
+  h+='<button class="menu" onclick="start(\'exam\')">Prüfung <small>20 zufällige Fragen</small></button>';
+  Object.keys(byCat).sort().forEach(function(c){
+    h+='<button class="menu" onclick="start(\'cat\',\''+c+'\')">'+catName(c)+' <small>'+byCat[c].total+'</small></button>';
+  });
+  var wrong=Object.keys(state).filter(function(i){return state[i]&&state[i].ok===false});
+  h+='<button class="menu" onclick="start(\'wrong\')">Fehlerliste <small>'+wrong.length+'</small></button>';
+  h+='<details><summary>Hilfe</summary><div class="help"><h3>Punkte</h3><p>Einen Punkt gibt es nur, wenn genau die richtigen Antworten gewählt sind: alle richtigen und keine falsche.</p><h3>Lernstand</h3><p>Wissensstand, Fehlerliste und Bestwert werden nur auf diesem Gerät gespeichert.</p></div></details>';
+  h+='<details><summary>Lernstand zurücksetzen</summary><p class="hint">Setzt Wissensstand, Fehlerliste und Bestwert auf diesem Gerät zurück.</p><button class="ghost" onclick="resetAll()">Lernstand zurücksetzen</button></details>';
+  app.innerHTML=h;
+}
+
+var cur=[],idx=0,sel={},checked=false,answered=0,correct=0;
+
+function build(kind,c){
+  var list=[];
+  if(kind==="all"){Q.forEach(function(q,i){list.push(i)})}
+  else if(kind==="exam"){var p=Q.map(function(q,i){return i});shuffle(p);list=p.slice(0,20)}
+  else if(kind==="cat"){Q.forEach(function(q,i){if(String(q[0])===String(c))list.push(i)})}
+  else if(kind==="wrong"){Object.keys(state).forEach(function(i){if(state[i]&&state[i].ok===false)list.push(+i)})}
+  shuffle(list);
+  return list;
+}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}}
+
+function start(kind,c){
+  cur=build(kind,c);
+  if(!cur.length){alert("Keine Fragen in dieser Auswahl.");return}
+  idx=0;answered=0;correct=0;
+  question();
+}
+
+function question(){
+  var qi=cur[idx],q=Q[qi];
+  sel={};checked=false;
+  var need=q[2].filter(function(a){return a[1]===1}).length;
+  var h='<div class="crow"><span>Frage '+(idx+1)+' von '+cur.length+'</span><button class="ghost" onclick="finish()">Beenden</button></div>';
+  h+='<h2>'+esc(q[1])+'</h2>';
+  h+='<p class="hint">Wähle '+need+' richtige Antwort'+(need===1?'':'en')+'.</p>';
+  q[2].forEach(function(a,i){
+    h+='<button class="opt" id="o'+i+'" onclick="pick('+i+')"><span class="box"></span><span>'+esc(a[0])+'</span></button>';
+  });
+  h+='<button class="primary" id="chk" onclick="check()">Antwort prüfen</button>';
+  h+='<div id="msg"></div>';
+  app.innerHTML=h;
+}
+
+function pick(i){
+  if(checked)return;
+  sel[i]=!sel[i];
+  var el=document.getElementById("o"+i);
+  el.classList.toggle("opt",false);
+  el.className="opt"+(sel[i]?" sel":"");
+  el.querySelector(".box").textContent=sel[i]?"✓":"";
+}
+
+function check(){
+  if(checked)return;
+  checked=true;
+  var qi=cur[idx],q=Q[qi];
+  var got=0;var okAll=true;
+  q[2].forEach(function(a,i){
+    var want=a[1]===1,have=!!sel[i];
+    var el=document.getElementById("o"+i);
+    el.disabled=true;
+    if(want&&have){el.className="opt ok";el.querySelector(".box").textContent="✓";got++}
+    else if(!want&&have){el.className="opt no";el.querySelector(".box").textContent="✕";okAll=false}
+    else if(want&&!have){el.className="opt ok";el.style.borderStyle="dashed";okAll=false}
+    else {el.className="opt";okAll=false}
+  });
+  answered++;
+  if(okAll)correct++;
+  state[qi]={ok:okAll};
+  save(state);
+  var m=document.getElementById("msg");
+  m.innerHTML='<p class="exp">'+(okAll?"Richtig.":"Leider falsch. Richtig wären die grün markierten Antworten gewesen.")+'</p>';
+  var last=idx>=cur.length-1;
+  var b=document.getElementById("chk");
+  b.className="primary";
+  b.textContent=last?"Ergebnis anzeigen":"Weiter";
+  b.onclick=last?finish:next;
+}
+
+function next(){idx++;question()}
+
+function finish(){
+  var pct=answered?Math.round(correct/answered*100):0;
+  var h='<div class="score">'+pct+' %</div>';
+  h+='<p class="sub">'+correct+' von '+answered+' beantworteten Fragen richtig</p>';
+  var wrongs=cur.filter(function(qi){return state[qi]&&state[qi].ok===false});
+  if(wrongs.length){h+='<button class="primary" onclick="start(\'wrong\')">Falsche Fragen wiederholen</button>'}
+  h+='<button class="primary" onclick="location.reload()">Zur Startseite</button>';
+  app.innerHTML=h;
+}
+
+function resetAll(){
+  if(!confirm("Lernstand wirklich zurücksetzen?"))return;
+  state={};save(state);home();
+}
+
+window.start=start;window.pick=pick;window.check=check;window.next=next;window.finish=finish;window.resetAll=resetAll;
+home();
+})();
+</script>
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+}
+</script>
+</body>
+</html>

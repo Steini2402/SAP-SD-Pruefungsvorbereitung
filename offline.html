@@ -1,1 +1,46 @@
-PLACEHOLDER_OFFLINE
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SAP SD Quiz">
+<meta name="author" content="Stefan Steinweg">
+<meta name="theme-color" content="#3B4BFF">
+<meta name="robots" content="noindex">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<title>Offline · SAP SD Quiz</title>
+<style>
+:root{--bg:#EEF1F8;--sf:#fff;--ink:#14182B;--mute:#5B6280;--ac:#3B4BFF;--acs:#E3E6FF;--ln:#D6DAEA;--onac:#fff;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#0E1020;--sf:#1A1D33;--ink:#ECEEFA;--mute:#9AA1C4;--ac:#8793FF;--acs:#2A2F5C;--ln:#2B3050;--onac:#0E1020;color-scheme:dark}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%;display:flex;min-height:100vh;align-items:center}
+main{max-width:520px;margin:0 auto;padding:28px 18px calc(28px + env(safe-area-inset-bottom,0px));text-align:center}
+.ic{width:88px;height:88px;border-radius:22%;display:block;margin:0 auto 16px}
+h1{font-size:32px;line-height:1.1;letter-spacing:-.02em;margin:0 0 10px}
+p{color:var(--mute);margin:0 0 14px}
+ul{text-align:left;padding-left:20px;margin:0 0 14px;color:var(--mute);font-size:16px}
+li{margin-bottom:8px}
+a.go{display:block;text-align:center;text-decoration:none;padding:17px;border-radius:16px;background:var(--ac);color:var(--onac);font-weight:700;font-size:19px;margin-top:10px}
+a.go:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.alt{display:block;margin-top:14px;color:inherit;font-size:15px}
+.foot{text-align:center;color:var(--mute);font-size:14px;margin:26px 0 0}
+</style>
+</head>
+<body>
+<main>
+<img class="ic" src="icon-192.png" alt="">
+<h1>Gerade offline</h1>
+<p>Diese Seite ist noch nicht auf deinem Gerät gespeichert. Die Quiz-Seite, die du zuletzt geöffnet hast, funktioniert aber auch ohne Netz.</p>
+<ul>
+<li>Öffne <strong>Quiz starten</strong> – bereits geladene Fragen laufen offline weiter.</li>
+<li>Dein Lernstand bleibt auf dem Gerät gespeichert und ist nicht betroffen.</li>
+<li>Sobald du wieder Netz hast, wird die Seite automatisch aktuell geladen.</li>
+</ul>
+<a class="go" href="quiz.html">Quiz starten</a>
+<a class="alt" href="index.html">Zur Startseite</a>
+<p class="foot">Copyright © 2026 by Stefan Steinweg</p>
+</main>
+</body>
+</html>
