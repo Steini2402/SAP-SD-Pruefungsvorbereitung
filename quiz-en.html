@@ -1,1 +1,192 @@
-PLACEHOLDER_QUIZEN
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SAP SD Quiz">
+<meta name="author" content="Stefan Steinweg">
+<meta name="theme-color" content="#3B4BFF">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="manifest" href="manifest-en.webmanifest">
+<title>SAP SD Quiz</title>
+<style>
+:root{--bg:#EEF1F8;--sf:#fff;--ink:#14182B;--mute:#5B6280;--ac:#3B4BFF;--acs:#E3E6FF;--ok:#12A150;--oks:#D9F5E5;--no:#E5484D;--nos:#FDE3E4;--ln:#D6DAEA;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1020;--sf:#1A1D33;--ink:#ECEEFA;--mute:#9AA1C4;--ac:#8793FF;--acs:#2A2F5C;--ok:#3DD68C;--oks:#12382A;--no:#FF6B70;--nos:#411B1F;--ln:#2B3050;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0E1020;--sf:#1A1D33;--ink:#ECEEFA;--mute:#9AA1C4;--ac:#8793FF;--acs:#2A2F5C;--ok:#3DD68C;--oks:#12382A;--no:#FF6B70;--nos:#411B1F;--ln:#2B3050;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.45 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+#app{max-width:480px;margin:0 auto;padding:20px 18px 32px}
+h1{font-size:34px;line-height:1.1;letter-spacing:-.02em;margin:28px 0 6px}
+h2{font-size:26px;line-height:1.2;letter-spacing:-.015em;margin:8px 0 22px;font-weight:700}
+.sub{color:var(--mute);margin:0 0 18px;font-size:15px}
+button{font:inherit;color:inherit;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent}
+button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.primary{width:100%;padding:16px;border-radius:16px;background:var(--ac);color:#fff;font-weight:600;font-size:18px;margin-top:18px}
+:root[data-theme="dark"] .primary{color:#0E1020}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .primary{color:#0E1020}}
+.ghost{padding:12px 16px;border-radius:12px;background:var(--acs);font-weight:600;font-size:15px}
+.opt{display:flex;gap:12px;align-items:flex-start}.box{flex:none;width:24px;height:24px;border-radius:7px;border:2px solid var(--ln);margin-top:1px;display:grid;place-items:center;font-size:15px;font-weight:700;line-height:1}.opt.sel{border-color:var(--ac);background:var(--acs)}.opt.sel .box{background:var(--ac);border-color:var(--ac);color:#fff}.opt.ok .box{background:var(--ok);border-color:var(--ok);color:#fff}.opt.no .box{background:var(--no);border-color:var(--no);color:#fff}.opt.miss{border-color:var(--ok);border-style:dashed}.tag{display:block;font-size:13px;color:var(--mute);margin-top:4px}.menu{display:flex;justify-content:space-between;width:100%;text-align:left;padding:16px 18px;margin-bottom:10px;border-radius:16px;background:var(--sf);border:1px solid var(--ln);font-weight:600}.menu small{color:var(--mute);font-weight:400}.help h3{font-size:18px;margin:24px 0 6px}.help p,.help li{margin:0 0 8px;font-size:16px}.help ul{padding-left:20px;margin:0 0 8px}.stat{background:var(--sf);border:1px solid var(--ln);border-radius:16px;padding:16px 18px;margin-bottom:18px}.big{font-size:44px;font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:4px}.crow{display:flex;justify-content:space-between;font-size:15px;margin-bottom:4px}.bar{height:6px;border-radius:3px;background:var(--ln);overflow:hidden;margin-bottom:14px}
+.bar span{display:block;height:100%;background:var(--ac);border-radius:3px;transition:width .3s}
+.opt{display:block;width:100%;text-align:left;padding:16px 18px;margin-bottom:10px;border-radius:16px;background:var(--sf);border:2px solid var(--ln);font-size:17px;transition:transform .1s}
+.opt:active{transform:scale(.98)}
+.opt.ok{border-color:var(--ok);background:var(--oks)}
+.opt.no{border-color:var(--no);background:var(--nos)}
+.opt:disabled{cursor:default}
+.exp{margin:14px 2px 0;color:var(--mute);font-size:15px}
+.score{font-size:64px;font-weight:800;letter-spacing:-.03em;margin:30px 0 4px;line-height:1}
+.row{display:flex;gap:10px;margin-top:12px}
+details{margin-top:28px;background:var(--sf);border-radius:16px;padding:14px 16px;border:1px solid var(--ln)}
+summary{font-weight:600;cursor:pointer}
+textarea{width:100%;min-height:150px;margin-top:10px;padding:12px;border-radius:12px;border:1px solid var(--ln);background:var(--bg);color:var(--ink);font:15px/1.4 inherit;resize:vertical}
+.hint{color:var(--mute);font-size:14px;margin:10px 0 0}
+#msg{font-size:14px;margin:10px 0 0;min-height:1em}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<script>
+var Q=[[1,"Which of the following statements about the organizational units distribution channel and division are correct?",[["In addition to the sales organization and the division, you need at least one distribution channel to be able to map a sales area.",1],["You need at least one division to be able to create sales orders.",1],["If different distribution channels have already been created, there is no need to create separate divisions.",0],["With a cross-division division you can group several product lines.",1]]],[1,"Roughly speaking, SAP distinguishes between applications and Customizing. Which statements about Customizing are correct?",[["A distinction is made between client-dependent and client-independent Customizing.",1],["In Customizing you can make modifications (program enhancements) to the SAP system.",0],["In Customizing you can adapt the company-neutral functions delivered with the SAP system to the specific business requirements of your company.",1]]],[1,"Which of the following statements about the organizational units plant, shipping point, storage location and company code are correct?",[["The plant plays no role at all in the SD module.",0],["The shipping point specifies from where (spatially) a sales area ships.",1],["Inventory is valuated at plant level.",1],["A plant can be assigned to several sales organizations.",1]]],[1,"To map the sales process, ...",[["...no dedicated organizational units are required. The general organizational units are used.",0],["...dedicated organizational units are required.",1],["...only organizational units that are also used in the SD application component are used.",0],["...organizational units are used that are needed both in sales and in the other modules of the SAP system.",1]]],[1,"Which of the following statements about the organizational unit shipping point is correct?",[["The organizational unit shipping point requires the organizational unit storage location to exist.",0],["The term shipping point always refers to real physical facilities, such as a gate or a ramp, and only counts as additional information in the shipping process.",0],["A shipping point can be assigned to several plants.",1]]],[1,"Which of the following organizational units are required to map a sales area?",[["Shipping point",0],["Storage location",0],["Distribution channel",1],["Sales organization",1],["Division",1]]],[1,"As a sales clerk you often start your work with document entry. What can you do to get into this application faster?",[["You can enter the transaction code for the application in your favorites list to reach the initial screen faster.",1],["You can call a predefined transaction at the same time via your SAP GUI shortcut for quick logon.",1],["You can define a start transaction via the “Extras” menu so that the desired application opens immediately after logon.",1],["At the end of each working day you go to document entry. When you log on the next morning, the document entry transaction is displayed directly.",0]]],[1,"In transaction “VD03” you want to permanently preset the input field sales organization with a specific default value. How do you proceed?",[["In the Workplace you enter the parameter value on the “Field defaults” tab.",0],["In the user defaults you enter the combination of parameter name and value on the “Parameters” tab.",1],["In the entry screen you enter the value in the desired field. Then you right-click and select “Apply parameter value”.",0]]],[1,"Which of the following statements about the organizational unit storage location are correct?",[["Storage locations are always managed via so-called Lean Warehouse Management.",0],["The storage location is used to store material at different places or rooms within a plant.",0],["The organizational unit storage location can be used by all logistics areas of the SAP system.",1],["The storage location is used for quantity-based inventory management.",1]]],[1,"Which of the following statements about the organizational units shipping point/plant/storage location are correct?",[["A shipping point is always uniquely assigned to exactly one plant.",0],["The existence of the organizational unit plant is a prerequisite for deliveries to be created and physically shipped.",0],["The shipping point is the organizational unit in the SAP system responsible for processing shipping.",1],["A storage location designates a physically existing place within the warehouse.",0]]],[1,"Which of the following statements about company code and client are correct?",[["Completely separate customer master records are stored and maintained in each client.",1],["Completely separate customer master records are stored and maintained in each company code.",0],["A client can only have one company code.",0],["A balance sheet can be created for a company code.",1]]],[1,"An organizational unit is ...",[["...always also a legal entity.",0],["...always an organizational and (at the same time) legal entity.",0],["...a building block in the organizational structure of a company.",1],["...an organizational and sometimes (at the same time) also a legal entity.",1]]],[1,"You are in the transaction “Create Inquiry”. You want the document date you already entered to be available again when you restart the transaction, because you often enter several inquiries in a row with the same date. The document date should be available as a default value that you can overwrite. How do you proceed?",[["From the menu bar you choose “System > User Profile > Take Data”.",0],["From the menu bar you choose “System > User Profile > Own Data”.",0],["From the menu bar you choose “System > User Profile > Hold Data”.",1]]],[1,"With user defaults, for example, the sales organization can be set as a user parameter so that it is entered automatically as a default value in the fields in the future. What should you keep in mind regarding user defaults?",[["User parameters are lost after logging off and must be entered again after every logon.",0],["User parameters only apply to the user who entered them with their user name after logging on.",1],["User parameters cannot be changed later.",0],["Using user parameters saves time and reduces the number of input errors.",1]]],[1,"Which of the following statements about the shipping point are correct?",[["Each delivery is processed by exactly one shipping point.",1],["Several shipping points can be assigned to a plant.",1],["The existence of shipping points is a prerequisite for deliveries to be created.",1],["The shipping point is always at header level in the sales order.",0]]],[1,"You want to find a master record in an application (e.g. Sales). Which tools are available in the SAP system to search for master records created in the system?",[["If value help is available for an input field, there is a pushbutton next to the field. When you click this pushbutton, the search helps for the fields are displayed.",1],["You position the cursor in the relevant field. Then you press the function key “F4” and the search helps are displayed.",1],["You call up help with the function key “F1” and have all records created in the system displayed. Then you select the correct master record by double-clicking.",0]]],[1,"Which of the following statements about the sales area is correct?",[["A sales area is an independent organizational unit.",0],["The link from company code to sales area is made via the organizational unit sales organization.",1],["The sales area is a combination of sales organization, shipping point and division.",0]]],[1,"Which of the following statements about the organizational unit sales organization are correct?",[["Several sales organizations can be assigned to a company code.",1],["The sales organization assigns the sales area to the company code.",1],["A maximum of one distribution channel can be assigned to a sales organization.",0],["Several plants can be assigned to a sales organization.",1]]],[1,"With the help of sessions you can open several transactions at the same time. You use a session so that you can change master data at any time. Why should a session that is no longer needed be closed?",[["Many open sessions use more resources on your computer and slow it down.",1],["It can happen that you can no longer switch between many open sessions, because you can open any number of sessions.",0],["It can happen that data from your open session is overwritten by other users.",0],["It can happen that data from your open session cannot be edited by other users because it is locked for editing.",1]]],[1,"You are in the SAP system and want to display a master record. You have values displayed via the matchcode help. Although you are sure that the master record you are looking for exists, the list does not contain it. What could be the reason?",[["You do not have the necessary authorizations to display the master record.",0],["Your restrictions in the matchcode search exclude the master record.",1],["There are more entries than can be displayed by the “maximum number of hits”.",1]]],[1,"All sales documents can be output in the form of messages. Which statements about messages are correct?",[["Via the Print Preview icon in the order, the message can be displayed on screen.",1],["Messages must always be output immediately.",0],["Messages are usually output manually. A background job is only used in exceptional cases.",0],["Several options are available for outputting messages. For example, they can be printed, sent by email or faxed.",1]]]];
+</script>
+<script>
+(function(){
+var KEY="sap-sd-quiz-v1";
+function load(){try{var r=localStorage.getItem(KEY);return r?JSON.parse(r):{}}catch(e){return {}}}
+function save(s){try{localStorage.setItem(KEY,JSON.stringify(s))}catch(e){}}
+var state=load();
+var app=document.getElementById("app");
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function catName(c){return "Category "+c}
+
+function home(){
+  var known=0,total=0;
+  var byCat={};
+  Q.forEach(function(q,i){
+    var rec=state[i];
+    total++;
+    byCat[q[0]]=byCat[q[0]]||{total:0,known:0};
+    byCat[q[0]].total++;
+    if(rec&&rec.ok===true){known++;byCat[q[0]].known++}
+  });
+  var pct=total?Math.round(known/total*100):0;
+  var h='<h1>SAP SD Quiz</h1><p class="sub">'+total+' questions in the catalog</p>';
+  h+='<div class="stat"><div class="big">'+pct+' %</div><p class="sub" style="margin:0">Knowledge level: '+known+' of '+total+' questions answered correctly</p></div>';
+  Object.keys(byCat).sort().forEach(function(c){
+    var d=byCat[c];
+    var p=d.total?Math.round(d.known/d.total*100):0;
+    h+='<div class="crow"><span>'+catName(c)+'</span><span>'+d.known+'/'+d.total+' · '+p+' %</span></div><div class="bar"><span style="width:'+p+'%"></span></div>';
+  });
+  h+='<button class="menu" onclick="start(\'all\')">Shuffle all questions <small>'+total+'</small></button>';
+  h+='<button class="menu" onclick="start(\'exam\')">Exam <small>20 random questions</small></button>';
+  Object.keys(byCat).sort().forEach(function(c){
+    h+='<button class="menu" onclick="start(\'cat\',\''+c+'\')">'+catName(c)+' <small>'+byCat[c].total+'</small></button>';
+  });
+  var wrong=Object.keys(state).filter(function(i){return state[i]&&state[i].ok===false});
+  h+='<button class="menu" onclick="start(\'wrong\')">Practice mistakes <small>'+wrong.length+'</small></button>';
+  h+='<details><summary>Help</summary><div class="help"><h3>Scoring</h3><p>You only get a point if exactly the correct answers are selected: all correct ones and no wrong one.</p><h3>Progress</h3><p>Knowledge level, mistakes list and best score are stored only on this device.</p></div></details>';
+  h+='<details><summary>Reset progress</summary><p class="hint">Resets knowledge level, mistakes list and best score on this device.</p><button class="ghost" onclick="resetAll()">Reset progress</button></details>';
+  app.innerHTML=h;
+}
+
+var cur=[],idx=0,sel={},checked=false,answered=0,correct=0;
+
+function build(kind,c){
+  var list=[];
+  if(kind==="all"){Q.forEach(function(q,i){list.push(i)})}
+  else if(kind==="exam"){var p=Q.map(function(q,i){return i});shuffle(p);list=p.slice(0,20)}
+  else if(kind==="cat"){Q.forEach(function(q,i){if(String(q[0])===String(c))list.push(i)})}
+  else if(kind==="wrong"){Object.keys(state).forEach(function(i){if(state[i]&&state[i].ok===false)list.push(+i)})}
+  shuffle(list);
+  return list;
+}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}}
+
+function start(kind,c){
+  cur=build(kind,c);
+  if(!cur.length){alert("No questions in this selection.");return}
+  idx=0;answered=0;correct=0;
+  question();
+}
+
+function question(){
+  var qi=cur[idx],q=Q[qi];
+  sel={};checked=false;
+  var need=q[2].filter(function(a){return a[1]===1}).length;
+  var h='<div class="crow"><span>Question '+(idx+1)+' of '+cur.length+'</span><button class="ghost" onclick="finish()">End</button></div>';
+  h+='<h2>'+esc(q[1])+'</h2>';
+  h+='<p class="hint">Choose '+need+' correct answer'+(need===1?'':'s')+'.</p>';
+  q[2].forEach(function(a,i){
+    h+='<button class="opt" id="o'+i+'" onclick="pick('+i+')"><span class="box"></span><span>'+esc(a[0])+'</span></button>';
+  });
+  h+='<button class="primary" id="chk" onclick="check()">Check answer</button>';
+  h+='<div id="msg"></div>';
+  app.innerHTML=h;
+}
+
+function pick(i){
+  if(checked)return;
+  sel[i]=!sel[i];
+  var el=document.getElementById("o"+i);
+  el.classList.toggle("opt",false);
+  el.className="opt"+(sel[i]?" sel":"");
+  el.querySelector(".box").textContent=sel[i]?"✓":"";
+}
+
+function check(){
+  if(checked)return;
+  checked=true;
+  var qi=cur[idx],q=Q[qi];
+  var okAll=true;
+  q[2].forEach(function(a,i){
+    var want=a[1]===1,have=!!sel[i];
+    var el=document.getElementById("o"+i);
+    el.disabled=true;
+    if(want&&have){el.className="opt ok";el.querySelector(".box").textContent="✓"}
+    else if(!want&&have){el.className="opt no";el.querySelector(".box").textContent="✕";okAll=false}
+    else if(want&&!have){el.className="opt ok";el.style.borderStyle="dashed";okAll=false}
+    else {el.className="opt";okAll=false}
+  });
+  answered++;
+  if(okAll)correct++;
+  state[qi]={ok:okAll};
+  save(state);
+  var m=document.getElementById("msg");
+  m.innerHTML='<p class="exp">'+(okAll?"Correct.":"Not quite. The green answers were the right ones.")+'</p>';
+  var last=idx>=cur.length-1;
+  var b=document.getElementById("chk");
+  b.className="primary";
+  b.textContent=last?"Show result":"Next";
+  b.onclick=last?finish:next;
+}
+
+function next(){idx++;question()}
+
+function finish(){
+  var pct=answered?Math.round(correct/answered*100):0;
+  var h='<div class="score">'+pct+' %</div>';
+  h+='<p class="sub">'+correct+' of '+answered+' answered questions correct</p>';
+  var wrongs=cur.filter(function(qi){return state[qi]&&state[qi].ok===false});
+  if(wrongs.length){h+='<button class="primary" onclick="start(\'wrong\')">Repeat wrong questions</button>'}
+  h+='<button class="primary" onclick="location.reload()">Back to start</button>';
+  app.innerHTML=h;
+}
+
+function resetAll(){
+  if(!confirm("Really reset your progress?"))return;
+  state={};save(state);home();
+}
+
+window.start=start;window.pick=pick;window.check=check;window.next=next;window.finish=finish;window.resetAll=resetAll;
+home();
+})();
+</script>
+<script>
+if("serviceWorker" in navigator){
+  window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})});
+}
+</script>
+</body>
+</html>
