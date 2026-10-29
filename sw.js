@@ -1,11 +1,11 @@
 /* SAP SD Quiz - Service Worker
  * Strategie:
  *  - Navigation (HTML-Seiten): network-first, Fallback auf Cache, dann offline.html
- *  - Statische Dateien (Icons, Manifest): stale-while-revalidate
+ *  - Statische Dateien (Icons, Manifest, Bilder): stale-while-revalidate
  *  - Google Analytics: wird nie abgefangen und nie gecacht
  * Version bei inhaltlichen Aenderungen hochziehen.
  */
-var VERSION = "v2";
+var VERSION = "v3";
 var CACHE = "sap-sd-quiz-" + VERSION;
 var OFFLINE = "offline.html";
 
@@ -18,6 +18,10 @@ var PRECACHE = [
   OFFLINE,
   "manifest.webmanifest",
   "manifest-en.webmanifest",
+  "bild1.jpg",
+  "bild2.jpg",
+  "bild3.jpg",
+  "bild4.jpg",
   "icon-180.png",
   "icon-192.png",
   "icon-512.png",
