@@ -109,7 +109,7 @@ function home(){
   cats.forEach(function(c){var n=Q.filter(function(q){return q[0]===c}).length;h+='<button class="menu" data-c="'+c+'"><span>'+LB(c)+'</span><small>'+n+' Fragen</small></button>'});
   h+='<button class="menu" id="mis"'+(missed.length?'':' disabled style="opacity:.5"')+'><span>Fehlerliste üben</span><small>'+missed.length+' Fragen</small></button>';
   h+='<button class="ghost" id="rs" style="width:100%;margin-top:18px">Lernstand zurücksetzen</button>';
-  h+='<p class="hint" style="text-align:center;margin-top:24px">Copyright © 2026 by Stefan Steinweg</p>';
+  h+='<p class="hint" style="text-align:center;margin-top:24px">Copyright © 2026 by Stefan Steinweg (mit Hilfe von KI erstellt) </p>';
   app.innerHTML=h;
   document.getElementById("rs").onclick=function(){
     var b=this;
