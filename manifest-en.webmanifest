@@ -1,13 +1,13 @@
 {
- "name": "Extra Questions",
- "short_name": "Extra",
- "id": "/SAP-SD-Pruefungsvorbereitung/extra/en",
+ "name": "SAP SD Quiz",
+ "short_name": "SD Quiz",
+ "id": "/SAP-SD-Pruefungsvorbereitung/quiz-en.html",
  "start_url": "quiz-en.html",
  "scope": "./",
  "display": "standalone",
  "orientation": "portrait",
  "background_color": "#EEF1F8",
- "theme_color": "#7A3FF2",
+ "theme_color": "#3B4BFF",
  "lang": "en",
  "icons": [
   {
